@@ -6,8 +6,12 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     private Camera mainCam;
+    public TargetShifter starter;
+
+    private int current = 1;
     void Awake(){
         mainCam = Camera.main;
+        starter.activate();
     }
 
     public void OnClick(InputAction.CallbackContext ctx){
@@ -17,6 +21,11 @@ public class InputHandler : MonoBehaviour
 
         if(!rayHit.collider) return;
 
-        Debug.Log(rayHit.collider.gameObject.name);
+        if(rayHit.collider.gameObject.name == starter.gameObject.name){
+            starter.deactivate();
+            starter = starter.nextTarget;
+        }
+
+        
     }
 }
