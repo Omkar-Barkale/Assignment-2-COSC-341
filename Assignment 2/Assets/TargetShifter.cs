@@ -19,20 +19,22 @@ public class TargetShifter : MonoBehaviour
          Vector3 scale = this.transform.localScale;
          Vector3 direction = (this.transform.position - gm.origin).normalized;
 
-        this.transform.localScale = new Vector3(Mathf.Lerp(scale.x, gm.size,0.1f), Mathf.Lerp(scale.y, gm.size,0.1f),0);
+        this.transform.localScale = new Vector3(Mathf.Lerp(scale.x, gm.size,0.05f), Mathf.Lerp(scale.y, gm.size,0.05f),this.transform.localScale.z);
 
-        this.transform.localPosition =  new Vector3(Mathf.Lerp(this.transform.position.x, (direction.x-gm.origin.x)*gm.distance,0.1f),Mathf.Lerp(this.transform.position.y, (direction.y-gm.origin.y)*gm.distance,0.1f),0);
+        this.transform.localPosition =  new Vector3(Mathf.Lerp(this.transform.position.x, (direction.x-gm.origin.x)*gm.distance,0.05f),Mathf.Lerp(this.transform.position.y, (direction.y-gm.origin.y)*gm.distance,0.05f),this.transform.localPosition.z);
     }
 
     public void activate(){
         active = true;
         this.sp.color = Color.red;
+        this.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,-0.1f);
 
     }
 
     public void deactivate(){
         active = false;
         this.sp.color = Color.white;
+        this.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,0f);
         nextTarget.activate();
     }
 

@@ -7,6 +7,7 @@ public class InputHandler : MonoBehaviour
 {
     private Camera mainCam;
     public TargetShifter starter;
+    public GameManager gm;
 
     private int current = 1;
     void Awake(){
@@ -22,8 +23,10 @@ public class InputHandler : MonoBehaviour
         if(!rayHit.collider) return;
 
         if(rayHit.collider.gameObject.name == starter.gameObject.name){
+            if(rayHit.collider.gameObject.name == "9"){gm.newConditions();}
             starter.deactivate();
             starter = starter.nextTarget;
+
         }
 
         
