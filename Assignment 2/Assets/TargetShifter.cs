@@ -19,9 +19,9 @@ public class TargetShifter : MonoBehaviour
          Vector3 scale = this.transform.localScale;
          Vector3 direction = (this.transform.position - gm.origin).normalized;
 
-        this.transform.localScale = new Vector3(Mathf.Lerp(scale.x, gm.size,0.05f), Mathf.Lerp(scale.y, gm.size,0.05f),this.transform.localScale.z);
+        this.transform.localScale = new Vector3(Mathf.Lerp(scale.x, gm.size,.75f), Mathf.Lerp(scale.y, gm.size,.75f),this.transform.localScale.z);
 
-        this.transform.localPosition =  new Vector3(Mathf.Lerp(this.transform.position.x, (direction.x-gm.origin.x)*gm.distance,0.05f),Mathf.Lerp(this.transform.position.y, (direction.y-gm.origin.y)*gm.distance,0.05f),this.transform.localPosition.z);
+        this.transform.localPosition =  new Vector3(Mathf.Lerp(this.transform.position.x, (direction.x-gm.origin.x)*gm.distance,.75f),Mathf.Lerp(this.transform.position.y, (direction.y-gm.origin.y)*gm.distance,.75f),this.transform.localPosition.z);
     }
 
     public void activate(){

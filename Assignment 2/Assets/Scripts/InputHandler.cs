@@ -73,7 +73,7 @@ public class InputHandler : MonoBehaviour
         
                 tw.WriteLine(gm.inputype + ", " + gm.size*2 + ", " + gm.distance/0.75f*5f + ", " + currentTime + ", " + 0);
                 tw.Close();
-                currentTime = 0;
+                
             }
 
         }
