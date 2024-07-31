@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject endScreen;
+    public GameObject startScreen;
+
+    public static string filename = "";
+    public bool play = false;
+
+    public string inputype;
 
     [Range(0.5f,2)]
     public float size = 1;
@@ -34,6 +41,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public string getFilename(){
+        return filename;
+    }
+
     public void newConditions(){
         if(conditions.Count <=0f){
             endGame();
@@ -44,8 +55,11 @@ public class GameManager : MonoBehaviour
 
         Vector2 newCond = (Vector2) conditions[randomIndex];
         conditions.RemoveAt(randomIndex);
-        size = newCond.x * 0.5f;
-        distance = newCond.y * 1.5f;
+
+        Debug.Log(newCond);
+
+        size = newCond.x * 0.25f;
+        distance = newCond.y*.75f;
 
     }
 
@@ -55,6 +69,26 @@ public class GameManager : MonoBehaviour
 
     public void restart(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void mouse(){
+        inputype = "Mouse";
+        startScreen.SetActive(false);
+        play = true;
+        filename = Application.dataPath + "/test_" + inputype + ".csv";
+        TextWriter tw = new StreamWriter(filename, false);
+        tw.WriteLine("Input, Width, Amplitude, Time, Correct");
+        tw.Close();
+    }
+
+    public void pad(){
+        inputype = "Trackpad";
+        startScreen.SetActive(false);
+        play = true;    
+        filename = Application.dataPath + "/test_" + inputype + ".csv";
+        TextWriter tw = new StreamWriter(filename, false);
+        tw.WriteLine("Input, Width, Amplitude, Time, Correct");
+        tw.Close();
     }
 
     

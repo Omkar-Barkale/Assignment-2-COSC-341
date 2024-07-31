@@ -33,7 +33,7 @@ public class TargetShifter : MonoBehaviour
 
     public void deactivate(){
         active = false;
-        this.sp.color = Color.white;
+        this.sp.color = Color.grey;
         this.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,0f);
         nextTarget.activate();
     }
